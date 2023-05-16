@@ -1,6 +1,22 @@
 const path = require('path');
 const {app, BrowserWindow, Menu} = require('electron');
+const { spawn } = require('child_process');
+const kill = require('tree-kill');
+const apiExePath = path.join(__dirname, './api.exe');
+const apiProcess = spawn(apiExePath);
 
+
+apiProcess.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+});
+
+apiProcess.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+});
+
+apiProcess.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+});
 
 const isMac = process.platform === 'darwin';
 
@@ -25,9 +41,28 @@ app.whenReady().then(() => {
         }
     });
 });
+let isQuitting = false;
+app.on('before-quit', (event) => {
+    if (isQuitting) return;
+
+    // Prevent the default behavior
+    event.preventDefault();
+
+    isQuitting = true;
+
+    // Kill the apiProcess and its child processes
+    kill(apiProcess.pid, 'SIGTERM', function(err) {
+        if (err) {
+            console.log("Failed to kill process tree: " + err.message);
+            return;
+        }
+    // Now it's safe to quit the app
+    setImmediate(() => app.quit());
+});
 
 app.on('window-all-closed', () => {
     if (!isMac) {
         app.quit();
     }
+});
 });

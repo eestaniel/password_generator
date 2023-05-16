@@ -9,10 +9,12 @@
   },
   "author": "Doy",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
+    "concurrently": "^8.0.1",
     "electron": "^24.3.0"
   },
-  "devDependencies": {
-    "concurrently": "^8.0.1"
+  "dependencies": {
+    "ps-node": "^0.1.6",
+    "tree-kill": "^1.2.2"
   }
 }
