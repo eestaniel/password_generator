@@ -41,18 +41,18 @@ function generatePassword() {
         password += characters.charAt(randomIndex);
     }
 
-    document.getElementById("generatedText").value = password
+    document.getElementById("floatingTextarea").value = password
     document.getElementById("copyButton").style.display = 'inline'; // Show the copy button
 
-    const generatedText = document.getElementById("generatedText");
+    const generatedText = document.getElementById("floatingTextarea");
     generatedText.value = password;
     adjustTextareaHeight(generatedText);
 }
+
 function adjustTextareaHeight(textarea) {
     textarea.style.height = ""; // Reset the height
     textarea.style.height = textarea.scrollHeight + "px";
 }
-
 
 
 document.getElementById("copyButton").addEventListener("click", function () {
