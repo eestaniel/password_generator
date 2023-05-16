@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-import os
 import string
 import secrets
-import signal
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
@@ -31,7 +29,4 @@ def helloWorld():
 
 
 if __name__ == '__main__':
-    try:
-        app.run(debug=True)
-    except (SystemExit, KeyboardInterrupt):
-        os.kill(os.getpid(), signal.SIGINT)
+    app.run(debug=True)
