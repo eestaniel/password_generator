@@ -4,10 +4,8 @@
   "description": "App to generate password",
   "main": "main.js",
   "scripts": {
-  "start": "concurrently \"npm run start-flask\" \"npm run start-electron\"",
-  "start-flask": "python ./backend/api.py",
-  "start-electron": "electron ."
-},
+    "start": "npx electron ."
+  },
   "author": "Doy",
   "license": "MIT",
   "dependencies": {
