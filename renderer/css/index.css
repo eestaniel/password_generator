@@ -11,9 +11,6 @@
 #generatedText {
     margin-bottom: 10px;
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center; /* Add this line */
 }
 
 #generateButton {
@@ -34,9 +31,5 @@
     margin-bottom: 20px;
 }
 
-@media (max-width: 600px) {
-    /* Additional styles for smaller screens */
-    #generatedText {
-        width: 100%;
-    }
-}
+
+
