@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <h1>Password Generator</h1>
+
+    <input type="text" id="generatedText" readonly>
+    <button id="copyButton" style="display: none;">Copy</button>
+
+    <div class="slider-container">
+        <label for="lengthSlider">Length</label>
+        <input type="range" min="1" max="100" value="10" id="lengthSlider" oninput="updateLength(this.value)">
+        <input type="number" min="1" max="100" value="10" id="lengthInput" oninput="updateLength(this.value)">
+    </div>
+    <button id="generateButton" onclick="generatePassword()">Generate Password</button>
+
+    <script src="./js/generate_password.js"></script>
+</body>
+</html>
