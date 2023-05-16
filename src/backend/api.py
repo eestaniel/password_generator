@@ -8,6 +8,7 @@ import signal
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
+
 @app.route("/generate-password", methods=["POST", "GET"])
 @cross_origin()
 def helloWorld():
@@ -27,7 +28,6 @@ def helloWorld():
     password = ''.join(secrets.choice(characters) for i in range(length))
 
     return jsonify({'password': password})
-
 
 
 if __name__ == '__main__':
