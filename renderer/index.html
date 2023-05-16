@@ -6,41 +6,43 @@
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <h1>Password Generator</h1>
+    <div class="container">
+        <h1>Password Generator</h1>
 
-    <input type="text" id="generatedText" readonly>
-    <button id="copyButton" style="display: none;">Copy</button>
+        <input type="text" id="generatedText" readonly>
+        <button id="copyButton" style="display: none;">Copy</button>
 
-    <div class="slider-container">
-        <label for="lengthSlider">Length</label>
-        <input type="range" min="1" max="100" value="10" id="lengthSlider">
-        <input type="number" min="1" max="100" value="10" id="lengthInput">
+        <div class="slider-container">
+            <label for="lengthSlider">Length</label>
+            <input type="range" min="1" max="256" value="12" id="lengthSlider">
+            <input type="number" min="1" max="256" value="12" id="lengthInput">
+        </div>
+
+        <div class="checkbox-container">
+            <div>
+                <input type="checkbox" id="uppercase" checked>
+                <label for="uppercase">Contain Uppercase Letters</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="lowercase" checked>
+                <label for="lowercase">Contain Lowercase Letters</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="numbers" checked>
+                <label for="numbers">Contain Numbers</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="symbols" checked>
+                <label for="symbols">Contain Symbols</label>
+            </div>
+        </div>
+
+
+        <button id="generateButton" onclick="generatePassword()">Generate Password</button>
     </div>
-
-    <div class="checkbox-container">
-        <div>
-            <input type="checkbox" id="uppercase" checked>
-            <label for="uppercase">Contain Uppercase Letters</label>
-        </div>
-
-        <div>
-            <input type="checkbox" id="lowercase" checked>
-            <label for="lowercase">Contain Lowercase Letters</label>
-        </div>
-
-        <div>
-            <input type="checkbox" id="numbers" checked>
-            <label for="numbers">Contain Numbers</label>
-        </div>
-
-        <div>
-            <input type="checkbox" id="symbols" checked>
-            <label for="symbols">Contain Symbols</label>
-        </div>
-    </div>
-
-
-    <button id="generateButton" onclick="generatePassword()">Generate Password</button>
 
     <script src="./js/generate_password.js"></script>
 </body>
