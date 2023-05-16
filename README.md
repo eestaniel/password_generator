@@ -6,7 +6,7 @@ Here's a suggested README.md based on the code you provided:
 
 This is a password generator application built with HTML, CSS, JavaScript, and Electron.
 
-![](./bin/imgs/password%20generator.png)
+![](src/bin/imgs/password%20generator.png)
 
 ## Features
 

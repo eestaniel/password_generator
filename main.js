@@ -11,7 +11,7 @@ function createMainWindow() {
         height: 400,
     });
 
-    mainWindow.loadFile(path.join(__dirname, './renderer/index.html'));
+    mainWindow.loadFile(path.join(__dirname, './src/index.html'));
     // Remove the menu bar
     Menu.setApplicationMenu(null);
 }
