@@ -3,17 +3,18 @@ const lengthSlider = document.getElementById("lengthSlider");
 const lengthInput = document.getElementById("lengthInput");
 
 // Update the number input whenever the slider changes
-lengthSlider.addEventListener("input", function() {
-  lengthInput.value = lengthSlider.value;
+lengthSlider.addEventListener("input", function () {
+    lengthInput.value = lengthSlider.value;
 });
 
 // Update the slider whenever the number input changes
-lengthInput.addEventListener("input", function() {
-  lengthSlider.value = lengthInput.value;
+lengthInput.addEventListener("input", function () {
+    lengthSlider.value = lengthInput.value;
 });
 
 // Function to generate password and populate the text field
 function generatePassword() {
+
     const length = document.getElementById("lengthInput").value;
     const uppercase = document.getElementById("uppercase").checked;
     const lowercase = document.getElementById("lowercase").checked;
@@ -43,12 +44,22 @@ function generatePassword() {
     document.getElementById("generatedText").value = password
     document.getElementById("copyButton").style.display = 'inline'; // Show the copy button
 
+    const generatedText = document.getElementById("generatedText");
+    generatedText.value = password;
+    adjustTextareaHeight(generatedText);
+}
+function adjustTextareaHeight(textarea) {
+    textarea.style.height = ""; // Reset the height
+    textarea.style.height = textarea.scrollHeight + "px";
 }
 
 
-document.getElementById("copyButton").addEventListener("click", function(){
+
+document.getElementById("copyButton").addEventListener("click", function () {
     var copyText = document.getElementById("generatedText");
     copyText.select();
     copyText.setSelectionRange(0, 99999); /* For mobile devices */
     document.execCommand("copy");
 });
+
+
