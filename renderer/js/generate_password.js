@@ -15,7 +15,27 @@ lengthInput.addEventListener("input", function() {
 // Function to generate password and populate the text field
 function generatePassword() {
     const length = document.getElementById("lengthInput").value;
-    fetch(`http://localhost:5000/generate-password?length=${length}`)
+    const uppercase = document.getElementById("uppercase").checked;
+    const lowercase = document.getElementById("lowercase").checked;
+    const numbers = document.getElementById("numbers").checked;
+    const symbols = document.getElementById("symbols").checked;
+
+    const data = {
+        length: length,
+        uppercase: uppercase,
+        lowercase: lowercase,
+        numbers: numbers,
+        symbols: symbols
+    };
+    console.log(data)
+
+     fetch('http://localhost:5000/generate-password', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
         .then(response => response.json())
         .then(data => {
             document.getElementById("generatedText").value = data.password;
@@ -23,7 +43,7 @@ function generatePassword() {
         })
         .catch((error) => {
             console.error('Error:', error);
-        });
+    });
 }
 
 
