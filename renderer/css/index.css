@@ -1,0 +1,28 @@
+/* styles.css */
+
+#generatedText {
+  margin-bottom: 10px; /* Adds some space below the text field */
+}
+
+#generateButton {
+  display: block; /* Changes the button display to a block element */
+  margin-top: 10px; /* Adds some space above the button */
+}
+
+/* Set the width of the password box to 80% of its parent */
+#generatedText {
+    width: 80%;
+}
+/* Center all elements in the body */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
