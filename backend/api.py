@@ -12,7 +12,7 @@ CORS(app)
 def generate_password():
     data = request.get_json()
 
-    length = data.get('length', 8)
+    length = int(data.get('length', 8))
     characters = ''
     if data.get('lowercase'):
         characters += string.ascii_lowercase
