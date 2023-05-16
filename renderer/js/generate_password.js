@@ -20,30 +20,29 @@ function generatePassword() {
     const numbers = document.getElementById("numbers").checked;
     const symbols = document.getElementById("symbols").checked;
 
-    const data = {
-        length: length,
-        uppercase: uppercase,
-        lowercase: lowercase,
-        numbers: numbers,
-        symbols: symbols
-    };
-    console.log(data)
+    let characters = '';
+    if (uppercase) {
+        characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    }
+    if (lowercase) {
+        characters += 'abcdefghijklmnopqrstuvwxyz';
+    }
+    if (numbers) {
+        characters += '0123456789';
+    }
+    if (symbols) {
+        characters += '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
+    }
 
-     fetch('http://localhost:5000/generate-password', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("generatedText").value = data.password;
-            document.getElementById("copyButton").style.display = 'inline'; // Show the copy button
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-    });
+    let password = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters.charAt(randomIndex);
+    }
+
+    document.getElementById("generatedText").value = password
+    document.getElementById("copyButton").style.display = 'inline'; // Show the copy button
+
 }
 
 
