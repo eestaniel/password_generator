@@ -25,7 +25,7 @@ Password Generator is an Electron application that generates secure passwords ba
 2. Install the required packages for the Electron app and the Flask API
 
 ```shell
-npm install
+npm run install-deps
 ```
 
 3. Run the Electron app:
