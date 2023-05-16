@@ -14,39 +14,38 @@ lengthInput.addEventListener("input", function () {
 
 // Function to generate password and populate the text field
 function generatePassword() {
-
     const length = document.getElementById("lengthInput").value;
     const uppercase = document.getElementById("uppercase").checked;
     const lowercase = document.getElementById("lowercase").checked;
     const numbers = document.getElementById("numbers").checked;
     const symbols = document.getElementById("symbols").checked;
+    const data = {
+        length: length,
+        uppercase: uppercase,
+        lowercase: lowercase,
+        numbers: numbers,
+        symbols: symbols
+    };
+    console.log(data)
 
-    let characters = '';
-    if (uppercase) {
-        characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    }
-    if (lowercase) {
-        characters += 'abcdefghijklmnopqrstuvwxyz';
-    }
-    if (numbers) {
-        characters += '0123456789';
-    }
-    if (symbols) {
-        characters += '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
-    }
-
-    let password = '';
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * characters.length);
-        password += characters.charAt(randomIndex);
-    }
-
-    document.getElementById("floatingTextarea").value = password
-    document.getElementById("copyButton").style.display = 'inline'; // Show the copy button
-
-    const generatedText = document.getElementById("floatingTextarea");
-    generatedText.value = password;
-    adjustTextareaHeight(generatedText);
+    fetch('http://localhost:5000/generate-password', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("floatingTextarea").value = data.password;
+            document.getElementById("copyButton").style.display = 'inline'; // Show the copy button
+            const generatedText = document.getElementById("floatingTextarea");
+            generatedText.value = data.password;
+            adjustTextareaHeight(generatedText);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 function adjustTextareaHeight(textarea) {
@@ -56,7 +55,7 @@ function adjustTextareaHeight(textarea) {
 
 
 document.getElementById("copyButton").addEventListener("click", function () {
-    var copyText = document.getElementById("generatedText");
+    var copyText = document.getElementById("floatingTextarea");
     copyText.select();
     copyText.setSelectionRange(0, 99999); /* For mobile devices */
     document.execCommand("copy");
