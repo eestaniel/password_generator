@@ -8,10 +8,21 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/generate-password', methods=['GET'])
+@app.route('/generate-password', methods=['POST'])
 def generate_password():
-    length = request.args.get('length', default=8, type=int)
-    characters = string.ascii_letters + string.digits + string.punctuation
+    data = request.get_json()
+
+    length = data.get('length', 8)
+    characters = ''
+    if data.get('lowercase'):
+        characters += string.ascii_lowercase
+    if data.get('uppercase'):
+        characters += string.ascii_uppercase
+    if data.get('numbers'):
+        characters += string.digits
+    if data.get('symbols'):
+        characters += string.punctuation
+
     password = ''.join(secrets.choice(characters) for i in range(length))
 
     return jsonify({'password': password})
