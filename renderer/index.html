@@ -16,6 +16,30 @@
         <input type="range" min="1" max="100" value="10" id="lengthSlider" oninput="updateLength(this.value)">
         <input type="number" min="1" max="100" value="10" id="lengthInput" oninput="updateLength(this.value)">
     </div>
+
+    <div class="checkbox-container">
+        <div>
+            <input type="checkbox" id="uppercase" checked>
+            <label for="uppercase">Contain Uppercase Letters</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="lowercase" checked>
+            <label for="lowercase">Contain Lowercase Letters</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="numbers" checked>
+            <label for="numbers">Contain Numbers</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="symbols" checked>
+            <label for="symbols">Contain Symbols</label>
+        </div>
+    </div>
+
+
     <button id="generateButton" onclick="generatePassword()">Generate Password</button>
 
     <script src="./js/generate_password.js"></script>
