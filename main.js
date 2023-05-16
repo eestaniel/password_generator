@@ -1,5 +1,5 @@
 const path = require('path');
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, Menu} = require('electron');
 
 
 const isMac = process.platform === 'darwin';
@@ -12,6 +12,8 @@ function createMainWindow() {
     });
 
     mainWindow.loadFile(path.join(__dirname, './renderer/index.html'));
+    // Remove the menu bar
+    Menu.setApplicationMenu(null);
 }
 
 app.whenReady().then(() => {
