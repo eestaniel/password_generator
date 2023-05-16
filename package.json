@@ -4,8 +4,8 @@
   "description": "App to generate password",
   "main": "main.js",
   "scripts": {
-    "start": "concurrently \"npx electron .\" \"flask --app ./src/backend/api.py run\" -k",
-    "install": "concurrently \"npm install\" \"pip install flask flask_cors\""
+    "start": "concurrently \"npx electron .\" \"flask run --app src.backend.api:app\" -k",
+    "install-deps": "npm install && pip install Flask Flask-Cors"
   },
   "author": "Doy",
   "license": "MIT",
